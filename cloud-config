@@ -1,0 +1,6 @@
+#cloud-config
+solace: 
+ configuration_keys: 
+   nodetype: message_routing
+   username/admin/globalaccesslevel: admin
+   username/admin/password: pa55word
