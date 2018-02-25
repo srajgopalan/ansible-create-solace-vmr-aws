@@ -1,0 +1,31 @@
+---
+
+#- debug: var=ip_address
+
+
+- name: Create Message-vpn "{{ vpn.vpn_name }}"
+  uri:
+   url: "http://{{ item.public_ip }}:{{ mgmt_port }}/SEMP/v2/config/msgVpns"
+   method: POST
+   user: "{{ mgmt_username }}"
+   password: "{{ mgmt_password }}"
+   headers:
+    Content-Type: "application/json"
+   body:
+    msgVpnName: "{{ vpn.vpn_name }}"
+    authenticationBasicType: "internal"
+    enabled: true
+    maxConnectionCount: 10
+    maxMsgSpoolUsage: 100
+    maxSubscriptionCount: 500
+   body_format: json
+   force_basic_auth: yes
+   status_code: 200
+   return_content: yes
+  register: result
+  until: result.content.find("\"responseCode\":200") != -1
+  ignore_errors: True
+  retries: 3
+  delay: 3
+  with_items: "{{ ec2.instances }}"
+

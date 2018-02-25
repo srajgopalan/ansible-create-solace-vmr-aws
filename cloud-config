@@ -4,3 +4,5 @@ solace:
    nodetype: message_routing
    username/admin/globalaccesslevel: admin
    username/admin/password: pa55word
+   username/ansible/globalaccesslevel: read-write
+   username/ansible/password: ansible

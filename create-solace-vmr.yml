@@ -1,0 +1,18 @@
+---
+ - hosts: localhost
+   connection: local
+   gather_facts: false
+   pre_tasks:
+    - include_vars: vars/solace-env.yml
+
+   tasks:
+   
+   - name: Create Solace VMR on EC2
+     include_role:
+      name: create-ec2-vmr
+
+   - name: Create VPN
+     include_role:
+      name: create-vpn
+     vars:
+      vpn: "{{ message_vpn }}"

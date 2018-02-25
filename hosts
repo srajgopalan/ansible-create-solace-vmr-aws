@@ -2,4 +2,3 @@
 localhost ansible_python_interpreter=/usr/bin/python3.6
 
 [solace]
-13.250.4.73

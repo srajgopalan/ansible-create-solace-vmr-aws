@@ -1,0 +1,44 @@
+---
+#management credentials
+mgmt_username: ansible
+mgmt_password: ansible
+mgmt_port: 8080
+
+#aws-related
+instance_type: t2.medium
+security_group: solace # Change the security group name here
+security_group_description: solace
+image: "ami-0010547c" # Solace SGP AWS AMI ID
+keypair: "srajgopalan-vmr-sgp-keypair" # This is one of my keys that i already have in AWS
+region: "ap-southeast-1" # Change the Region
+count: 1
+
+#message-vpn
+message_vpn:
+ vpn_name: "solcloud4_vpn"
+
+#client-profile
+client_profile:
+ client_profile_name: "foo_cp"
+
+#acl-profile
+acl_profile:
+ acl_profile_name: "foo_acl"
+
+#client-username
+client_username:
+ client_username_name: "foo_cu"
+ client_profile_name: "foo_cp"
+ acl_profile_name: "foo_acl"
+ password: "foo_cu"
+ enabled: true
+
+#queue
+queue:
+ queue_name: queue1
+ subscription_topics:
+  - "topic/1/>"
+  - "topic/2/>"
+  - "topic/3/>"
+  - "topic/4/>"
+ owner: "first_cu"
